@@ -72,7 +72,9 @@ def main(network="ethereum"):
     amt = 0.05 * 1e8
 
     tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
-#     assert 'MintLockedFbtcRequest' in tx.events
+    assert tx.status == 1
+    assert len(tx.events) > 0
+    assert 'MintLockedFbtcRequest' in tx.events
 
     receive_amount = tx.events['MintLockedFbtcRequest']['receivedAmount']
     fee = tx.events['MintLockedFbtcRequest']['fee']
