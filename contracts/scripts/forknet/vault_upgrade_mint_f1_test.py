@@ -1,5 +1,6 @@
 from brownie import interface, FBTCProxy, LockedFBTC, uniBTC, Vault, accounts, project, config, Contract
 from pathlib import Path
+import brownie
 
 # Execution Command Format:
 # `brownie run scripts/forknet/vault_upgrade_mint_f1_test.py main "ethereum" --network=mainnet-public-fork`
