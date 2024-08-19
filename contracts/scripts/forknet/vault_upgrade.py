@@ -23,7 +23,7 @@ contracts = {
     },
 }
 
-accounts = {
+accounts_ = {
     "ethereum": {
         "owner": "0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3",
         "deployer": "0x899c284A89E113056a72dC9ade5b60E80DD3c94f",
@@ -42,9 +42,9 @@ def main(network="ethereum"):
     ProxyAdmin = deps.ProxyAdmin
 
     # Load accounts
-    owner = accounts.at(contracts[network]['owner'], True)
-    deployer = accounts.at(contracts[network]['deployer'], True)
-    multisig = accounts.at(contracts[network]['multisig'], True)
+    owner = accounts.at(accounts_[network]['owner'], True)
+    deployer = accounts.at(accounts_[network]['deployer'], True)
+    multisig = accounts.at(accounts_[network]['multisig'], True)
 
     owner_zealy = accounts.at('0xbFdDf5e269C74157b157c7DaC5E416d44afB790d', True)
 
