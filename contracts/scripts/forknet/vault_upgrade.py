@@ -23,16 +23,30 @@ contracts = {
     },
 }
 
+accounts = {
+    "ethereum": {
+        "owner": "0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3",
+        "deployer": "0x899c284A89E113056a72dC9ade5b60E80DD3c94f",
+        "multisig": "0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3",
+    },
+    "mantle": {
+        "owner": "0x9251fd3D79522bB2243a58FFf1dB43E25A495aaB",
+        "deployer": "0x899c284A89E113056a72dC9ade5b60E80DD3c94f",
+        "multisig": "0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3",
+    },
+}
+
 def main(network="ethereum"):
     deps = project.load(Path.home() / ".brownie" / "packages" / config["dependencies"][0])
     TransparentUpgradeableProxy = deps.TransparentUpgradeableProxy
     ProxyAdmin = deps.ProxyAdmin
 
     # Load accounts
-    owner = accounts.at('0x9251fd3D79522bB2243a58FFf1dB43E25A495aaB', True)
+    owner = accounts.at(contracts[network]['owner'], True)
+    deployer = accounts.at(contracts[network]['deployer'], True)
+    multisig = accounts.at(contracts[network]['multisig'], True)
+
     owner_zealy = accounts.at('0xbFdDf5e269C74157b157c7DaC5E416d44afB790d', True)
-    deployer = accounts.at('0x899c284A89E113056a72dC9ade5b60E80DD3c94f', True)
-    multisig = accounts.at('0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3', True)
 
     # Upgrade Vault
     proxyAdmin = ProxyAdmin.at(contracts[network]['proxy_admin'])
