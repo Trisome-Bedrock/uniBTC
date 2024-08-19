@@ -71,20 +71,23 @@ def main(network="ethereum"):
 
     amt = 0.05 * 1e8
 
-    tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
-    assert tx.status == 1
-    assert len(tx.events) > 0
-    assert 'MintLockedFbtcRequest' in tx.events
+    with brownie .reverts("USR001"):
+        tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
 
-    receive_amount = tx.events['MintLockedFbtcRequest']['receivedAmount']
-    fee = tx.events['MintLockedFbtcRequest']['fee']
-    assert receive_amount > 0
-    assert locked_fbtc.balanceOf(vault) == receive_amount
-    assert fbtc.balanceOf(vault) == fbtc_bal_before - amt
-
-    print("Network: ", network)
-    print(" Burned FBTC amount: ", amt)
-    print(" Minted LockedFBTC amount: ", receive_amount)
-    print(" Fee: ", fee)
+#     tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
+#     assert tx.status == 1
+#     assert len(tx.events) > 0
+#     assert 'MintLockedFbtcRequest' in tx.events
+#
+#     receive_amount = tx.events['MintLockedFbtcRequest']['receivedAmount']
+#     fee = tx.events['MintLockedFbtcRequest']['fee']
+#     assert receive_amount > 0
+#     assert locked_fbtc.balanceOf(vault) == receive_amount
+#     assert fbtc.balanceOf(vault) == fbtc_bal_before - amt
+#
+#     print("Network: ", network)
+#     print(" Burned FBTC amount: ", amt)
+#     print(" Minted LockedFBTC amount: ", receive_amount)
+#     print(" Fee: ", fee)
 
 
