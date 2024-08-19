@@ -1,4 +1,4 @@
-from brownie import interface, FBTCProxy, LockedFBTC, uniBTC, Vault, accounts, project, config
+from brownie import interface, FBTCProxy, LockedFBTC, uniBTC, Vault, accounts, project, config, Contract
 from pathlib import Path
 
 # Execution Command Format:
