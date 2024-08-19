@@ -1,0 +1,534 @@
+development:
+- cmd: anvil
+  cmd_settings:
+    port: 8545
+  host: http://127.0.0.1
+  id: anvil
+  name: Anvil
+- cmd: anvil
+  cmd_settings:
+    fork: mainnet
+    port: 8545
+  host: http://127.0.0.1
+  id: anvil-fork
+  name: Anvil (Mainnet Fork)
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    gas_limit: 12000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: development
+  name: Ganache-CLI
+- cmd: ethnode
+  cmd_settings:
+    port: 8545
+  host: http://127.0.0.1
+  id: geth-dev
+  name: Geth Dev
+- cmd: npx hardhat node
+  cmd_settings:
+    port: 8545
+  host: http://localhost
+  id: hardhat
+  name: Hardhat
+- cmd: npx hardhat node
+  cmd_settings:
+    fork: mainnet
+    port: 8545
+  host: http://localhost
+  id: hardhat-fork
+  name: Hardhat (Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: mainnet
+    gas_limit: 12000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: mainnet-fork
+  name: Ganache-CLI (Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: bsc-main
+    gas_limit: 12000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: bsc-main-fork
+  name: Ganache-CLI (BSC-Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: ftm-main
+    gas_limit: 12000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: ftm-main-fork
+  name: Ganache-CLI (FTM-Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: polygon-main
+    gas_limit: 20000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: polygon-main-fork
+  name: Ganache-CLI (Polygon-Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: xdai-main
+    gas_limit: 20000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: xdai-main-fork
+  name: Ganache-CLI (XDai-Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: avax-main
+    gas_limit: 20000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: avax-main-fork
+  name: Ganache-CLI (Avax-Mainnet Fork)
+  timeout: 120
+- cmd: ganache-cli
+  cmd_settings:
+    accounts: 10
+    evm_version: istanbul
+    fork: aurora-main
+    gas_limit: 20000000
+    mnemonic: brownie
+    port: 8545
+  host: http://127.0.0.1
+  id: aurora-main-fork
+  name: Ganache-CLI (Aurora-Mainnet Fork)
+  timeout: 120
+- cmd: ganache
+  cmd_settings:
+    fork: iotex-testnet
+  host: http://127.0.0.1:8545
+  id: iotex-testnet-fork
+  name: Ganache-CLI (IoTeX Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: iotex-mainnet
+  host: http://127.0.0.1:8545
+  id: iotex-mainnet-fork
+  name: Ganache-CLI (IoTeX Mainnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: mainnet-public
+  host: http://127.0.0.1:8545
+  id: mainnet-public-fork
+  name: Ganache-CLI (Mainnet Public Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: goerli-public
+  host: http://127.0.0.1:8545
+  id: goerli-public-fork
+  name: Ganache-CLI (Goerli Public Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: mainnet-public-infura
+  host: http://127.0.0.1:8545
+  id: mainnet-public-fork-infura
+  name: Ganache-CLI (Mainnet Public Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: goerli-public-infura
+  host: http://127.0.0.1:8545
+  id: goerli-public-fork-infura
+  name: Ganache-CLI (Goerli Public Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: sepolia-rpc-public
+  host: http://127.0.0.1:8545
+  id: sepolia-rpc-public-fork
+  name: Ganache-CLI (Sepolia RPC Public Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: holesky-rpc-public
+  host: http://127.0.0.1:8545
+  id: holesky-rpc-public-fork
+  name: Ganache-CLI (Holesky RPC Public Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: avax-test
+  host: http://127.0.0.1:8545
+  id: avax-test-fork
+  name: Ganache-CLI (Avalanche Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: bsc-test
+  host: http://127.0.0.1:8545
+  id: bsc-test-fork
+  name: Ganache-CLI (BSC Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: ftm-test
+  host: http://127.0.0.1:8545
+  id: ftm-test-fork
+  name: Ganache-CLI (Fantom Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: optimism-sepolia-test
+  host: http://127.0.0.1:8545
+  id: optimism-sepolia-test-fork
+  name: Ganache-CLI (Optimism Sepolia Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: b2-mainnet
+  host: http://127.0.0.1:8545
+  id: b2-mainnet-fork
+  name: Ganache-CLI (B2 Mainnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: b2-testnet
+  host: http://127.0.0.1:8545
+  id: b2-testnet-fork
+  name: Ganache-CLI (B2 Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: merlin-mainnet
+  host: http://127.0.0.1:8545
+  id: merlin-mainnet-fork
+  name: Ganache-CLI (Merlin Mainnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: merlin-testnet
+  host: http://127.0.0.1:8545
+  id: merlin-testnet-fork
+  name: Ganache-CLI (Merlin Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: bitlayer-mainnet
+  host: http://127.0.0.1:8545
+  id: bitlayer-mainnet-fork
+  name: Ganache-CLI (Bitlayer Mainnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: bitlayer-testnet
+  host: http://127.0.0.1:8545
+  id: bitlayer-testnet-fork
+  name: Ganache-CLI (Bitlayer Testnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: mantle-mainnet
+  host: http://127.0.0.1:8545
+  id: mantle-mainnet-fork
+  name: Ganache-CLI (Mantle Mainnet Fork)
+- cmd: ganache
+  cmd_settings:
+    fork: mantle-testnet
+  host: http://127.0.0.1:8545
+  id: mantle-testnet-fork
+  name: Ganache-CLI (Mantle Testnet Fork)
+live:
+- name: Ethereum
+  networks:
+  - chainid: 1
+    explorer: https://api.etherscan.io/api
+    host: https://mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: mainnet
+    multicall2: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696'
+    name: Mainnet (Infura)
+    provider: infura
+  - chainid: 3
+    explorer: https://api-ropsten.etherscan.io/api
+    host: https://ropsten.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: ropsten
+    multicall2: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696'
+    name: Ropsten (Infura)
+    provider: infura
+  - chainid: 4
+    explorer: https://api-rinkeby.etherscan.io/api
+    host: https://rinkeby.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: rinkeby
+    multicall2: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696'
+    name: Rinkeby (Infura)
+    provider: infura
+  - chainid: 5
+    explorer: https://api-goerli.etherscan.io/api
+    host: https://goerli.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: goerli
+    multicall2: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696'
+    name: Goerli (Infura)
+    provider: infura
+  - chainid: 42
+    explorer: https://api-kovan.etherscan.io/api
+    host: https://kovan.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: kovan
+    multicall2: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696'
+    name: Kovan (Infura)
+    provider: infura
+  - chainid: 1
+    explorer: https://api.etherscan.io/api
+    host: https://ethereum.publicnode.com
+    id: mainnet-public
+    name: Mainnet (Public)
+  - chainid: 5
+    explorer: https://api-goerli.etherscan.io/api
+    host: https://ethereum-goerli.publicnode.com
+    id: goerli-public
+    name: Goerli (Public)
+  - chainid: 1
+    explorer: https://api.etherscan.io/api
+    host: https://mainnet.infura.io/v3/d0a6c76d448d4f16baeb8143050a1f2f
+    id: mainnet-public-infura
+    name: Mainnet (Public)
+  - chainid: 5
+    explorer: https://api-goerli.etherscan.io/api
+    host: https://goerli.infura.io/v3/d0a6c76d448d4f16baeb8143050a1f2f
+    id: goerli-public-infura
+    name: Goerli (Public)
+  - chainid: 11155111
+    explorer: https://api-sepolia.etherscan.io/api
+    host: https://ethereum-sepolia-rpc.publicnode.com
+    id: sepolia-rpc-public
+    name: Sepolia (RPC Public)
+  - chainid: 17000
+    host: https://ethereum-holesky-rpc.publicnode.com
+    id: holesky-rpc-public
+    name: Holesky (RPC Public)
+- name: Ethereum Classic
+  networks:
+  - chainid: 61
+    explorer: https://blockscout.com/etc/mainnet/api
+    host: https://www.ethercluster.com/etc
+    id: etc
+    name: Mainnet
+  - chainid: 6
+    explorer: https://blockscout.com/etc/kotti/api
+    host: https://www.ethercluster.com/kotti
+    id: kotti
+    name: Kotti
+- name: Arbitrum
+  networks:
+  - chainid: 42161
+    explorer: https://api.arbiscan.io/api
+    host: https://arb1.arbitrum.io/rpc
+    id: arbitrum-main
+    multicall2: '0x5B5CFE992AdAC0C9D48E05854B2d91C73a003858'
+    name: Mainnet
+- name: Avalanche
+  networks:
+  - chainid: 43114
+    explorer: https://api.snowtrace.io/api
+    host: https://api.avax.network/ext/bc/C/rpc
+    id: avax-main
+    name: Mainnet
+  - chainid: 43113
+    host: https://api.avax-test.network/ext/bc/C/rpc
+    id: avax-test
+    name: Testnet
+  - chainid: 43112
+    host: http://127.0.0.1:9650/ext/bc/C/rpc
+    id: avalanche-local
+    name: local
+- name: Aurora
+  networks:
+  - chainid: 1313161554
+    explorer: https://api.aurorascan.dev/api
+    host: https://mainnet.aurora.dev
+    id: aurora-main
+    multicall2: '0xace58a26b8Db90498eF0330fDC9C2655db0C45E2'
+    name: Mainnet
+  - chainid: 1313161555
+    explorer: https://testnet.aurorascan.dev/api
+    host: https://testnet.aurora.dev
+    id: aurora-test
+    name: Testnet
+- name: Binance Smart Chain
+  networks:
+  - chainid: 97
+    explorer: https://api-testnet.bscscan.com/api
+    host: https://data-seed-prebsc-1-s1.binance.org:8545
+    id: bsc-test
+    name: Testnet
+  - chainid: 56
+    explorer: https://api.bscscan.com/api
+    host: https://bsc-dataseed.binance.org
+    id: bsc-main
+    name: Mainnet
+- name: Boba
+  networks:
+  - chainid: 28
+    explorer: https://blockexplorer.rinkeby.boba.network/api
+    host: https://rinkeby.boba.network
+    id: boba-test
+    multicall2: '0xeD188A73c442Df375b19b7b8f394a15a2b851BB5'
+    name: Testnet
+  - chainid: 288
+    explorer: https://blockexplorer.boba.network/api
+    host: https://mainnet.boba.network
+    id: boba-main
+    multicall2: '0xbe2Be647F8aC42808E67431B4E1D6c19796bF586'
+    name: Mainnet
+- name: Fantom Opera
+  networks:
+  - chainid: 4002
+    explorer: https://explorer.testnet.fantom.network
+    host: https://rpc.testnet.fantom.network
+    id: ftm-test
+    name: Testnet
+  - chainid: 250
+    explorer: https://api.ftmscan.com/api
+    host: https://rpc.ftm.tools
+    id: ftm-main
+    name: Mainnet
+- name: Harmony
+  networks:
+  - chainid: 1666600000
+    host: https://api.harmony.one
+    id: harmony-main
+    multicall2: '0x3E01dD8a5E1fb3481F0F589056b428Fc308AF0Fb'
+    name: Mainnet (Shard 0)
+- name: Moonbeam
+  networks:
+  - chainid: 1284
+    explorer: https://api-moonbeam.moonscan.io/api
+    host: https://moonbeam.api.onfinality.io/public
+    id: moonbeam-main
+    multicall2: '0x1337BedC9D22ecbe766dF105c9623922A27963EC'
+    name: Mainnet
+  - chainid: 1287
+    explorer: https://api-moonbase.moonscan.io/api
+    host: https://moonbeam-alpha.api.onfinality.io/public
+    id: moonbeam-test
+    multicall2: '0x37084d0158C68128d6Bc3E5db537Be996f7B6979'
+    name: Moonbase Alpha
+- name: Moonriver
+  networks:
+  - chainid: 1285
+    explorer: https://api-moonriver.moonscan.io/api
+    host: https://moonriver.api.onfinality.io/public
+    id: moonriver-main
+    multicall2: '0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3'
+    name: Mainnet
+- name: Optimistic Ethereum
+  networks:
+  - chainid: 10
+    explorer: https://api-optimistic.etherscan.io/api
+    host: https://mainnet.optimism.io
+    id: optimism-main
+    multicall2: '0x2DC0E2aa608532Da689e89e237dF582B783E552C'
+    name: Mainnet
+  - chainid: 69
+    explorer: https://api-kovan-optimistic.etherscan.io/api
+    host: https://kovan.optimism.io
+    id: optimism-test
+    multicall2: '0x2DC0E2aa608532Da689e89e237dF582B783E552C'
+    name: Kovan
+  - chainid: 11155420
+    host: https://sepolia.optimism.io
+    id: optimism-sepolia-test
+    name: Optimism Sopolia
+- name: Polygon
+  networks:
+  - chainid: 137
+    explorer: https://api.polygonscan.com/api
+    host: https://polygon-mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: polygon-main
+    multicall2: '0xc8E51042792d7405184DfCa245F2d27B94D013b6'
+    name: Mainnet (Infura)
+  - chainid: 80001
+    explorer: https://api-testnet.polygonscan.com/api
+    host: https://polygon-mumbai.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+    id: polygon-test
+    multicall2: '0x6842E0412AC1c00464dc48961330156a07268d14'
+    name: Mumbai Testnet (Infura)
+- name: XDai
+  networks:
+  - chainid: 100
+    explorer: https://blockscout.com/xdai/mainnet/api
+    host: https://xdai.poanetwork.dev
+    id: xdai-main
+    name: Mainnet
+  - chainid: 77
+    explorer: https://blockscout.com/poa/sokol/api
+    host: https://sokol.poa.network
+    id: xdai-test
+    name: Testnet
+- name: IoTeX
+  networks:
+  - chainid: 4690
+    host: https://babel-api.testnet.iotex.io
+    id: iotex-testnet
+    name: iotex-testnet
+  - chainid: 4689
+    host: https://babel-api.mainnet.iotex.io
+    id: iotex-mainnet
+    name: iotex-mainnet
+- name: Eth
+  networks:
+  - chainid: 1
+    host: https://eth.w3node.com/f88c46e4d88aec67e742020129bb0c2561c85d85bc686649cfe530a4c3783a6e/api
+    id: eth-mainnet
+    name: eth-mainnet
+- name: B2
+  networks:
+  - chainid: 1123
+    explorer: https://etherscan@testnet-explorer.bsquared.network/
+    host: https://b2-testnet.alt.technology
+    id: b2-testnet
+    name: B2 Testnet
+  - chainid: 223
+    explorer: https://etherscan@explorer.bsquared.network
+    host: https://rpc.bsquared.network
+    id: b2-mainnet
+    name: B2 Mainnet
+  - chainid: 4200
+    explorer: https://etherscan@scan.merlinchain.io
+    host: https://rpc.merlinchain.io
+    id: merlin-mainnet
+    name: Merlin Mainnet
+  - chainid: 686868
+    explorer: https://etherscan@testnet-scan.merlinchain.io
+    host: https://testnet-rpc.merlinchain.io
+    id: merlin-testnet
+    name: Merlin Testnet
+  - chainid: 200901
+    explorer: https://etherscan@www.btrscan.com
+    host: https://rpc.bitlayer.org
+    id: bitlayer-mainnet
+    name: Bitlayer Mainnet
+  - chainid: 200810
+    explorer: https://etherscan@testnet-scan.bitlayer.org
+    host: https://testnet-rpc.bitlayer.org
+    id: bitlayer-testnet
+    name: Bitlayer Testnet
+- name: E2
+  networks:
+  - chainid: 5000
+    explorer: https://etherscan@explorer.mantle.xyz
+    host: https://rpc.mantle.xyz
+    id: mantle-mainnet
+    name: Mantle Mainnet
+  - chainid: 5001
+    explorer: https://etherscan@explorer.testnet.mantle.xyz
+    host: https://rpc.testnet.mantle.xyz
+    id: mantle-testnet
+    name: Mantle Testnet
