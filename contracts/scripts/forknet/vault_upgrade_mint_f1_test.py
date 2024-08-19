@@ -69,7 +69,7 @@ def main(network="ethereum"):
     # Test minting LockedFBTC
     fbtc_bal_before = fbtc.balanceOf(vault)
 
-    amt = 0.05 * 1e8
+    amt = 0.0001 * 1e8
 
     tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
     assert tx.status == 1
