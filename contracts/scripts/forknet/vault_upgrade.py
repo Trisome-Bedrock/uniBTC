@@ -34,20 +34,20 @@ def main(network="ethereum"):
     deployer = accounts.at('0x899c284A89E113056a72dC9ade5b60E80DD3c94f', True)
     multisig = accounts.at('0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3', True)
 
-    # Build objects
-    proxyAdmin = ProxyAdmin.at(contracts[network]['proxy_admin'])
-    uni_btc = uniBTC.at(contracts[network]['uni_btc'])
-    vault = Vault.at(contracts[network]['vault'])
-    fbtc_proxy = FBTCProxy.at(contracts[network]['fbtc_proxy'])
-    locked_fbtc = interface.ILockedFBTC(contracts[network]['locked_fbtc'])
-    fbtc = deps.ERC20.at(contracts[network]['fbtc'])
-
     # Upgrade Vault
     vault_impl = Vault.deploy({'from': deployer})
     vault_proxy = TransparentUpgradeableProxy.at(contracts[network]['vault'])
     proxyAdmin.upgrade(vault_proxy, vault_impl.address, {'from': multisig})
 
-    #Grant OperatorRole to FBTCProxy
+    # Build objects
+    proxyAdmin = ProxyAdmin.at(contracts[network]['proxy_admin'])
+    uni_btc = uniBTC.at(contracts[network]['uni_btc'])
+    vault = Contract.from_abi("Vault",vault_proxy.address, Vault.abi)
+    fbtc_proxy = FBTCProxy.at(contracts[network]['fbtc_proxy'])
+    locked_fbtc = interface.ILockedFBTC(contracts[network]['locked_fbtc'])
+    fbtc = deps.ERC20.at(contracts[network]['fbtc'])
+
+    # Grant OperatorRole to FBTCProxy
     vault.grantRole(transparent_vault.OperatorRole(), fbtc_proxy, {'from': owner})
     assert vault.hasRole(vault.OperatorRole(), fbtc_proxy)
 
