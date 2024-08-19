@@ -82,7 +82,7 @@ def main(network="ethereum"):
 
     print("Network: ", network)
     print(" Burned FBTC amount: ", mint_amt)
-    print(" Minted FBTC amount: ", receive_amount)
+    print(" Minted LockedFBTC amount: ", receive_amount)
     print(" Fee: ", fee)
 
 
