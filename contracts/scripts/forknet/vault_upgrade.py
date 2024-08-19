@@ -47,7 +47,7 @@ def main(network="ethereum"):
     vault_proxy = TransparentUpgradeableProxy.at(contracts[network]['vault'])
     proxyAdmin.upgrade(vault_proxy, vault_impl.address, {'from': multisig})
 
-    Grant OperatorRole to FBTCProxy
+    #Grant OperatorRole to FBTCProxy
     vault.grantRole(transparent_vault.OperatorRole(), fbtc_proxy, {'from': owner})
     assert vault.hasRole(vault.OperatorRole(), fbtc_proxy)
 
