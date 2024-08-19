@@ -41,17 +41,16 @@ def main(network="ethereum"):
     vault_proxy = TransparentUpgradeableProxy.at(contracts[network]['vault'])
     proxyAdmin.upgrade(vault_proxy, vault_impl.address, {'from': multisig})
 
-    # Grant OperatorRole to FBTCProxy
-    vault.grantRole(transparent_vault.OperatorRole(), fbtc_proxy, {'from': owner})
-    assert vault.hasRole(vault.OperatorRole(), fbtc_proxy)
-
-    # Build other objects
+    # Build objects
     uni_btc = uniBTC.at(contracts[network]['uni_btc'])
     vault = Contract.from_abi("Vault",vault_proxy.address, Vault.abi)
     fbtc_proxy = FBTCProxy.at(contracts[network]['fbtc_proxy'])
     locked_fbtc = interface.ILockedFBTC(contracts[network]['locked_fbtc'])
     fbtc = deps.ERC20.at(contracts[network]['fbtc'])
 
+    # Grant OperatorRole to FBTCProxy
+    vault.grantRole(transparent_vault.OperatorRole(), fbtc_proxy, {'from': owner})
+    assert vault.hasRole(vault.OperatorRole(), fbtc_proxy)
 
 
 
