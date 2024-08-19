@@ -50,7 +50,7 @@ def main(network="ethereum"):
 
     # Grant OperatorRole to FBTCProxy
     vault.grantRole(vault.OPERATOR_ROLE(), fbtc_proxy, {'from': owner})
-    assert vault.hasRole(vault.OperatorRole(), fbtc_proxy)
+    assert vault.hasRole(vault.OPERATOR_ROLE(), fbtc_proxy)
 
 
 
