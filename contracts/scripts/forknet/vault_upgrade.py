@@ -49,7 +49,7 @@ def main(network="ethereum"):
     fbtc = deps.ERC20.at(contracts[network]['fbtc'])
 
     # Grant OperatorRole to FBTCProxy
-    vault.grantRole(vault.OperatorRole(), fbtc_proxy, {'from': owner})
+    vault.grantRole(vault.OPERATOR_ROLE(), fbtc_proxy, {'from': owner})
     assert vault.hasRole(vault.OperatorRole(), fbtc_proxy)
 
 
