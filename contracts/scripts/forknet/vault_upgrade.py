@@ -2,7 +2,7 @@ from brownie import interface, FBTCProxy, LockedFBTC, uniBTC, Vault, accounts, p
 from pathlib import Path
 
 # Execution Command Format:
-# `brownie run scripts/forknet/forknetvault_upgrade.py main "ethereum" --network=mainnet-public-fork`
+# `brownie run scripts/forknet/vault_upgrade.py main "ethereum" --network=mainnet-public-fork`
 
 contracts = {
     "ethereum": {
