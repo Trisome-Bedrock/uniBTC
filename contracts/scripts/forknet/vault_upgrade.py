@@ -32,7 +32,7 @@ accounts_ = {
     "mantle": {
         "owner": "0x9251fd3D79522bB2243a58FFf1dB43E25A495aaB",
         "deployer": "0x899c284A89E113056a72dC9ade5b60E80DD3c94f",
-        "multisig": "0xC9dA980fFABbE2bbe15d4734FDae5761B86b5Fc3",
+        "multisig": "0x9251fd3D79522bB2243a58FFf1dB43E25A495aaB",
     },
 }
 
