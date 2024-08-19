@@ -69,7 +69,7 @@ def main(network="ethereum"):
     # Test minting LockedFBTC
     fbtc_bal_before = fbtc.balanceOf(vault)
 
-    mint_amt = 5000 * 1e8
+    amt = 5000 * 1e8
 
     tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
     assert 'MintLockedFbtcRequest' in tx.events
@@ -78,10 +78,10 @@ def main(network="ethereum"):
     fee = tx.events['MintLockedFbtcRequest']['fee']
     assert receive_amount > 0
     assert locked_fbtc.balanceOf(vault) == receive_amount
-    assert fbtc.balanceOf(vault) == fbtc_bal_before - mint_amt
+    assert fbtc.balanceOf(vault) == fbtc_bal_before - amt
 
     print("Network: ", network)
-    print(" Burned FBTC amount: ", mint_amt)
+    print(" Burned FBTC amount: ", amt)
     print(" Minted LockedFBTC amount: ", receive_amount)
     print(" Fee: ", fee)
 
