@@ -1,6 +1,5 @@
 from brownie import interface, FBTCProxy, LockedFBTC, uniBTC, Vault, accounts, project, config, Contract
 from pathlib import Path
-import brownie
 
 # Execution Command Format:
 # `brownie run scripts/forknet/vault_upgrade_mint_f1_test.py main "ethereum" --network=mainnet-public-fork`
@@ -72,12 +71,9 @@ def main(network="ethereum"):
 
     amt = 0.05 * 1e8
 
-    with brownie .reverts("USR001"):
-        tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
-
-#     tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
-#     assert tx.status == 1
-#     assert len(tx.events) > 0
+    tx = fbtc_proxy.mintLockedFbtcRequest(amt, {'from': owner_zealy})
+    assert tx.status == 1
+    assert len(tx.events) > 0
 #     assert 'MintLockedFbtcRequest' in tx.events
 #
 #     receive_amount = tx.events['MintLockedFbtcRequest']['receivedAmount']
