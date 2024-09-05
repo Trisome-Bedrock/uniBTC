@@ -7,3 +7,6 @@
 [submodule "contracts/lib/OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.3"]
 	path = contracts/lib/OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.3
 	url = git@github.com:OpenZeppelin/openzeppelin-contracts-upgradeable.git
+[submodule "contracts/lib/chainlink-network/v2.14.0-ccip1.5.1"]
+	path = contracts/lib/chainlink-network/v2.14.0-ccip1.5.1
+	url = org-25111032@github.com:smartcontractkit/ccip.git

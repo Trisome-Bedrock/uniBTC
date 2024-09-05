@@ -6,8 +6,9 @@ You need to update the submodules that this repository depends on to the require
 
 - (1) Clone all submodules before checking out any tags or commits with this command: `git clone --recurse-submodules git@github.com:Bedrock-Technology/uniBTC.git`. If you have already cloned, from the `uniBTC/` directory, run `git submodule update --init --recursive`. <br>
 - (2) Checkout the celer-network commit. From the `uniBTC/contracts/lib/celer-network/sgn-v2-contracts-main/`, run `git checkout 0b4c531c52fd4f23cbb4397440da1cc42f837a12`. <br>
-- (3) Checkout openzeppelin-contracts. From the `uniBTC/contracts/lib/OpenZeppelin/openzeppelin-contracts@4.8.3/`, run `git checkout v4.8.3`. <br>
-- (4) Checkout openzeppelin-contracts-upgradeable. From the `uniBTC/contracts/lib/OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.3/`, run `git checkout v4.8.3`. <br>
+- (3) Checkout the chainlink-network ccip contracts. From the `uniBTC/contracts/lib/chainlink-network/v2.14.0-ccip1.5.1/`, run `git checkout v2.14.0-ccip1.5.1`. <br>
+- (4) Checkout openzeppelin-contracts. From the `uniBTC/contracts/lib/OpenZeppelin/openzeppelin-contracts@4.8.3/`, run `git checkout v4.8.3`. <br>
+- (5) Checkout openzeppelin-contracts-upgradeable. From the `uniBTC/contracts/lib/OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.3/`, run `git checkout v4.8.3`. <br>
 
 After all submodules updated as required, you can run the following command from the `uniBTC/contracts/` to build contracts: `brownie compile`
 
