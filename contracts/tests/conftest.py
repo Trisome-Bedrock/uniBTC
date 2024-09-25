@@ -1,7 +1,7 @@
 import pytest
 from web3 import Web3
 from pathlib import Path
-from brownie import FBTC, WBTC, WBTC18, XBTC, LockedFBTC, FBTCProxy, Vault, uniBTC, Peer, MessageBus, accounts, Contract, project, config, network
+from brownie import FBTC, WBTC, WBTC18, XBTC, LockedFBTC, FBTCProxy, Vault, uniBTC, accounts, Contract, project, config, network
 
 # Web3 client
 @pytest.fixture(scope="session", autouse=True)
@@ -47,17 +47,19 @@ def chain_id(w3):
     return w3.eth.chain_id
 
 @pytest.fixture(scope="session", autouse=True)
-def proxy():
+def deps():
     # Reference: https://docs.openzeppelin.com/contracts/4.x/api/proxy#TransparentUpgradeableProxy
     deps = project.load(  Path.home() / ".brownie" / "packages" / config["dependencies"][0])
-    return deps.TransparentUpgradeableProxy
+    return deps
 
 # Contracts
 @pytest.fixture()
-def contracts(w3, proxy, chain_id, roles, owner, deployer):
+def contracts(w3, deps, chain_id, roles, owner, deployer, zero_address):
+    proxy = deps.TransparentUpgradeableProxy
+
     # Deploy contracts
-    message_bus_sender = MessageBus.deploy({'from': owner})
-    message_bus_receiver = MessageBus.deploy({'from': owner})
+    # message_bus_sender = MessageBus.deploy({'from': owner})
+    # message_bus_receiver = MessageBus.deploy({'from': owner})
     fbtc = FBTC.deploy({'from': owner})
     wbtc = WBTC.deploy({'from': owner})
     wbtc18 = WBTC18.deploy({'from': owner})
@@ -71,9 +73,9 @@ def contracts(w3, proxy, chain_id, roles, owner, deployer):
     vault_proxy = proxy.deploy(vault, deployer, b'', {'from': deployer})
     vault_transparent = Contract.from_abi("Vault", vault_proxy.address, Vault.abi)
 
-    peer_sender = Peer.deploy(message_bus_sender, uni_btc_transparent, {'from': owner})
-    peer_receiver = Peer.deploy(message_bus_receiver, uni_btc_transparent, {'from': owner})
-    peers = [peer_sender, peer_receiver]
+    # peer_sender = Peer.deploy(message_bus_sender, uni_btc_transparent, {'from': owner})
+    # peer_receiver = Peer.deploy(message_bus_receiver, uni_btc_transparent, {'from': owner})
+    # peers = [peer_sender, peer_receiver]
 
     locked_fbtc = LockedFBTC.deploy({'from': deployer})
     locked_fbtc_proxy = proxy.deploy(locked_fbtc, deployer, b'', {'from': deployer})
@@ -83,19 +85,24 @@ def contracts(w3, proxy, chain_id, roles, owner, deployer):
 
     # Configure contracts
     uni_btc_transparent.initialize(owner, owner, {'from': owner})
-    for peer in peers:
-        uni_btc_transparent.grantRole(roles[1], peer, {'from': owner})
-        peer.configurePeers([chain_id, chain_id + 1], [peer_sender, peer_receiver], {'from': owner})
+    # for peer in peers:
+    #     uni_btc_transparent.grantRole(roles[1], peer, {'from': owner})
+    #     peer.configurePeers([chain_id, chain_id + 1], [peer_sender, peer_receiver], {'from': owner})
     vault_transparent.initialize(owner, uni_btc_transparent, {'from': owner})
     uni_btc_transparent.grantRole(roles[1], vault_transparent, {'from': owner})
 
     locked_fbtc_transparent.initialize(fbtc, owner, owner, vault_transparent, {'from': owner})
 
+    # TODO: Optimize deployments for Peer has been moved to the separate 'uniBTC/celer' folder.
     return [uni_btc_transparent,          # index = 0
-            peer_sender,                  # index = 1
-            peer_receiver,                # index = 2
-            message_bus_sender,           # index = 3
-            message_bus_receiver,         # index = 4
+            # peer_sender,                  # index = 1
+            # peer_receiver,                # index = 2
+            # message_bus_sender,           # index = 3
+            # message_bus_receiver,         # index = 4
+            zero_address,
+            zero_address,
+            zero_address,
+            zero_address,
             wbtc,                         # index = 5
             vault_transparent,            # index = 6
             fbtc,                         # index = 7
@@ -103,3 +110,6 @@ def contracts(w3, proxy, chain_id, roles, owner, deployer):
             fbtc_proxy,                   # index = 9
             locked_fbtc_transparent,      # index = 10
             wbtc18]                       # index = 11
+
+def pytest_addoption(parser):
+    parser.addoption("--case", action="store", default="default_slippage", help="case for the test")

@@ -18,9 +18,8 @@ compiler:
           enabled: true
           runs: 200
         remappings:
-          - "@openzeppelin/contracts=OpenZeppelin/openzeppelin-contracts@4.8.3/contracts"
-          - "@openzeppelin/contracts-upgradeable=OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.3/contracts"
-          - "@celer-network/contracts=./lib/celer-network/sgn-v2-contracts-main/contracts"
+          - "@openzeppelin/contracts=./lib/OpenZeppelin/openzeppelin-contracts@4.8.3/contracts"
+          - "@openzeppelin/contracts-upgradeable=./lib/OpenZeppelin/openzeppelin-contracts-upgradeable@4.8.3/contracts"
 
 # automatically fetch contract sources from Etherscan
 autofetch_sources: True
@@ -29,3 +28,9 @@ networks:
   mainnet-fork:
     cmd_settings:
       #    evm_version: "shanghai"
+  merlin-mainnet-fork:
+    cmd_settings:
+      default_balance: "1000000000000 ether"
+      unlock:
+        - 0x9251fd3D79522bB2243a58FFf1dB43E25A495aaB  # ProxyAdmin owner address
+        - 0x9251fd3D79522bB2243a58FFf1dB43E25A495aaB  # Vault default admin address
