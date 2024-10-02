@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/utils/Address.sol";
 import "../interfaces/IMintableContract.sol";
 import "../interfaces/ISupplyFeeder.sol";
 
-contract Vault is Initializable, AccessControlUpgradeable, PausableUpgradeable, ReentrancyGuardUpgradeable {
+contract VaultWithoutNative is Initializable, AccessControlUpgradeable, PausableUpgradeable, ReentrancyGuardUpgradeable {
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
     using SafeERC20 for IERC20;
@@ -26,8 +26,8 @@ contract Vault is Initializable, AccessControlUpgradeable, PausableUpgradeable, 
 
     bool private _DEPRECATED_redeemable_;
 
-    address public constant NATIVE_BTC = address(0xbeDFFfFfFFfFfFfFFfFfFFFFfFFfFFffffFFFFFF);
-    uint8 public constant L2_BTC_DECIMAL = 18;
+    address private constant NATIVE_BTC = address(0xbeDFFfFfFFfFfFfFFfFfFFFFfFFfFFffffFFFFFF);
+    uint8 private constant _DEPRECATED_L2_BTC_DECIMAL_ = 18;
 
     uint256 public constant EXCHANGE_RATE_BASE = 1e10;
 
@@ -47,14 +47,6 @@ contract Vault is Initializable, AccessControlUpgradeable, PausableUpgradeable, 
     modifier serviceNormal{
         require(!outOfService, "SYS011");
         _;
-    }
-
-    /**
-     * @dev mint uniBTC with native BTC
-     */
-    function mint() external payable serviceNormal {
-        require(allowedTokenList[NATIVE_BTC] && !paused[NATIVE_BTC], "SYS002");
-        _mint(msg.sender, msg.value);
     }
 
     /**
@@ -171,12 +163,11 @@ contract Vault is Initializable, AccessControlUpgradeable, PausableUpgradeable, 
      * @dev set cap for a specific type of wrapped BTC
      */
     function setCap(address _token, uint256 _cap) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(_token != NATIVE_BTC, "SYS012");
         require(_token != address(0x0), "SYS003");
         require(_cap > 0, "USR017");
 
-        uint8 decs = L2_BTC_DECIMAL;
-
-        if (_token != NATIVE_BTC) decs = ERC20(_token).decimals();
+        uint8 decs = ERC20(_token).decimals();
 
         require(decs == 8 || decs == 18, "SYS004");
 
@@ -199,21 +190,6 @@ contract Vault is Initializable, AccessControlUpgradeable, PausableUpgradeable, 
      */
 
     /**
-     * @dev mint uniBTC with native BTC tokens
-     */
-    function _mint(address _sender, uint256 _amount) internal {
-        (, uint256 uniBTCAmount) = _amounts(_amount);
-        require(uniBTCAmount > 0, "USR010");
-
-        uint256 totalSupply = ISupplyFeeder(supplyFeeder).totalSupply(NATIVE_BTC);
-        require(totalSupply <= caps[NATIVE_BTC] && caps[NATIVE_BTC] != 0, "USR003");
-
-        IMintableContract(uniBTC).mint(_sender, uniBTCAmount);
-
-        emit Minted(NATIVE_BTC, _amount);
-    }
-
-    /**
      * @dev mint uniBTC with wrapped BTC tokens
      */
     function _mint(address _sender, address _token, uint256 _amount) internal {
@@ -227,14 +203,6 @@ contract Vault is Initializable, AccessControlUpgradeable, PausableUpgradeable, 
         IMintableContract(uniBTC).mint(_sender, uniBTCAmount);
 
         emit Minted(_token, _amount);
-    }
-
-    /**
-     * @dev determine the valid native BTC amount and the corresponding uniBTC amount.
-     */
-    function _amounts(uint256 _amount) internal pure returns (uint256, uint256) {
-        uint256 uniBTCAmt = _amount / EXCHANGE_RATE_BASE;
-        return (uniBTCAmt * EXCHANGE_RATE_BASE, uniBTCAmt);
     }
 
     /**
